@@ -1,8 +1,11 @@
+import { Routes, Route } from 'react-router-dom'
+import { Login } from '../pages/Login/index'
+
 const App = () => {
   return (
-    <>
-      <h1>Boilerplace + React</h1>
-    </>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+    </Routes>
   )
 }
 
