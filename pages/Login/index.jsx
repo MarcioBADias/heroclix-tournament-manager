@@ -1,5 +1,13 @@
 import React, { useState } from 'react'
-import { Container, LoginForm, Input, Button } from './style'
+import {
+  Container,
+  LoginForm,
+  Input,
+  Button,
+  ImgLogo,
+  ImgDial,
+  Title,
+} from './style'
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -7,7 +15,10 @@ const Login = () => {
 
   return (
     <Container>
+      <Title>Heroclix Tournament Manager</Title>
       <LoginForm>
+        <ImgDial src="./WkDial_Blue.png" alt="Dial symbol" />
+        <ImgLogo src="./GuizLogo.png" alt="Miniatura de Super" />
         <h2>Login</h2>
         <Input
           type="email"
@@ -21,6 +32,7 @@ const Login = () => {
           value={password}
           onChange={(e) => setPasswortd(e.target.value)}
         />
+        <p>Fazer meu cadastro | Esqueceu a senha?</p>
         <Button type="submit">Entrar</Button>
       </LoginForm>
     </Container>
