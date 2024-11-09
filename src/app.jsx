@@ -3,9 +3,12 @@ import { Login } from '../pages/Login/index'
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-    </Routes>
+    <>
+      <Login />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </>
   )
 }
 
