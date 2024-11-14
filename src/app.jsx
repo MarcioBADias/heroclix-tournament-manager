@@ -6,6 +6,7 @@ import { Home } from '../pages/Home'
 const App = () => {
   return (
     <>
+      <Login />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

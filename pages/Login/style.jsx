@@ -36,7 +36,7 @@ export const ImgDial = styled.img`
 export const ImgLogo = styled.img`
   animation: fly 5s ease-in-out infinite alternate;
   position: absolute;
-  top: 25%;
+  top: 35%;
   width: 20%;
 
   @keyframes fly {
@@ -59,6 +59,7 @@ export const ImgLogo = styled.img`
 
   @media (min-width: 700px) {
     width: 10%;
+    top: 25%;
   }
 `
 
