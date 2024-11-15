@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 import {
   Container,
   LoginForm,
@@ -8,12 +10,15 @@ import {
   ImgDial,
   Title,
 } from './style'
-import axios from 'axios'
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPasswortd] = useState('')
   const [error, setError] = useState('')
+
+  const navigate = useNavigate()
+
+  const handleRegisterRedirect = () => navigate('/register')
 
   const handleLogin = async (e) => {
     e.preventDefault()
@@ -49,7 +54,12 @@ const Login = () => {
           value={password}
           onChange={(e) => setPasswortd(e.target.value)}
         />
-        <p>Fazer meu cadastro | Esqueceu a senha?</p>
+        <p>
+          <span onClick={handleRegisterRedirect} style={{ cursor: 'pointer' }}>
+            Fazer meu cadastro
+          </span>{' '}
+          | Esqueceu a senha?
+        </p>
         <Button type="submit">Entrar</Button>
       </LoginForm>
     </Container>
