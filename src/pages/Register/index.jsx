@@ -1,17 +1,15 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { register } from '../../services/authService'
 import { Container, RegisterForm, Input, Button, Title } from './style'
 
 const Register = () => {
-  const [name, setName] = useState('')
+  const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [error, setError] = useState('')
 
   const navigate = useNavigate()
-
-  const handleLoginRedirect = () => navigate('/login')
 
   const handleRegister = async (e) => {
     e.preventDefault()
@@ -20,14 +18,11 @@ const Register = () => {
       return
     }
     try {
-      await axios.post('http://localhost:5000/api/register', {
-        name,
-        email,
-        password,
-      })
-      console.log({ name, email, password })
+      await register(username, email, password)
+      alert('Registro feito com sucesso!')
+      navigate('/login')
     } catch (error) {
-      setError('Erro ao registrar. Tente novamente.')
+      alert(error.message || 'Erro ao registrar o usuario')
     }
   }
 
@@ -39,8 +34,8 @@ const Register = () => {
         <Input
           type="text"
           placeholder="Nome"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
         <Input
           type="email"
