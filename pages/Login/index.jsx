@@ -10,6 +10,7 @@ import {
   ImgDial,
   Title,
 } from './style'
+import { GoogleLogin } from '@react-oauth/google'
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -32,6 +33,12 @@ const Login = () => {
     } catch (error) {
       setError('Credenciais invalidas. Tente novamente')
     }
+  }
+
+  const handleGoogleLoginSucces = (credentialResponse) => {
+    const token = credentialResponse.credential
+    localStorage.setItem('token', token)
+    window.location.href = '/dashboard'
   }
 
   return (
@@ -61,6 +68,10 @@ const Login = () => {
           | Esqueceu a senha?
         </p>
         <Button type="submit">Entrar</Button>
+        <GoogleLogin
+          onSuccess={handleGoogleLoginSucces}
+          onError={() => console.log('Login Google Falhou')}
+        />
       </LoginForm>
     </Container>
   )
