@@ -8,8 +8,11 @@ const Register = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [error, setError] = useState('')
 
   const navigate = useNavigate()
+
+  const handleLoginRedirect = () => navigate('/login')
 
   const handleRegister = async (e) => {
     e.preventDefault()
@@ -22,7 +25,7 @@ const Register = () => {
       alert('Registro feito com sucesso!')
       navigate('/login')
     } catch (error) {
-      alert(error.message || 'Erro ao registrar o usuario')
+      setError('Erro ao registrar. Tente novamente.')
     }
   }
 

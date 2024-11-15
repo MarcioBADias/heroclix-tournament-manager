@@ -15,6 +15,7 @@ import { GoogleLogin } from '@react-oauth/google'
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPasswortd] = useState('')
+  const [error, setError] = useState('')
 
   const navigate = useNavigate()
 
@@ -27,7 +28,7 @@ const Login = () => {
       localStorage.setItem('token', token)
       navigate('/dashboard')
     } catch (error) {
-      alert(error.message || 'Erro ao fazer login')
+      setError('Credenciais inválidas. Tente novamente.')
     }
   }
 
