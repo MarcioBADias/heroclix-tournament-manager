@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import axios from 'axios'
+import { login } from '../../services/authService'
 import { useNavigate } from 'react-router-dom'
 import {
   Container,
@@ -15,7 +15,6 @@ import { GoogleLogin } from '@react-oauth/google'
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPasswortd] = useState('')
-  const [error, setError] = useState('')
 
   const navigate = useNavigate()
 
@@ -24,21 +23,18 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault()
     try {
-      const response = await axios.post('httpl://localhost:500/api/login', {
-        email,
-        password,
-      })
+      login(email, password)
       localStorage.setItem('token', token)
-      window.location.href = '/dashboard'
+      navigate('/dashboard')
     } catch (error) {
-      setError('Credenciais invalidas. Tente novamente')
+      alert(error.message || 'Erro ao fazer login')
     }
   }
 
   const handleGoogleLoginSucces = (credentialResponse) => {
     const token = credentialResponse.credential
     localStorage.setItem('token', token)
-    window.location.href = '/dashboard'
+    navigate('/dashboard')
   }
 
   return (
